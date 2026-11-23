@@ -23,7 +23,7 @@ ssh your_vm_user@your_vm_ip
 
 ### A. Fix the CD-ROM Source and Add Docker's GPG Key
 
-When trying to download docker I kept on getting a cdrom error. The reason is because `apt` initially tried to read from the local cdrom: source. So to fix that I commented out that first line in `/etc/apt/sources.list`, then I installed `ca-certificates` and `curl`, and downloaded Docker's official GPG key.
+When trying to download docker I kept on getting a cdrom error. The reason is because `apt` initially tried to read from the local cdrom: source. So to fix that I commented out that first line in `/etc/apt/sources.list`. After fixing that I installed `ca-certificates` and `curl`, and downloaded Docker's official GPG key.
 
 ```shell
 sudo sed -i '1s/^/#/' /etc/apt/sources.list
