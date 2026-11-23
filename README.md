@@ -1,6 +1,6 @@
 A collection of my Cybersecurity course Projects.
 
-## Projects
+## Projects: System Administration
 
 - [Project 1: Arch Linux Install](arch.md)
-- [Project 2: Self-Hosted Service (Docker Compose on Proxmox)](docker-compose-lab)
+- [Project 2: Self-Hosted Service (Docker Compose on Proxmox)](docker-compose-lab.md)
