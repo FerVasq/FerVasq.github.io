@@ -270,7 +270,7 @@ sudo apt install -y unattended-upgrades && sudo dpkg-reconfigure -plow unattende
 
 To have backups in case the volume gets deleted, the backup.sh will be created for that reason. The script stops the container, compresses the volume data directory into a timestamped .tar.gz archive in ~/backups, restarts the container, and deletes everything except the 7 newest archives.
 
-### Creating the backup.sh Script:
+### Creating the backup.sh Script in the uptime-kuma directory:
 
 ```shell
 nano backup.sh
