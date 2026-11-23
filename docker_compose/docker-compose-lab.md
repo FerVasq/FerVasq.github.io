@@ -10,6 +10,15 @@ Before installing Docker, I opened Proxmox, went to **Snapshots**, created a sna
 
 ---
 
+## Step 1.5: *Connect to the VM Through Your Own System*
+
+After taking the snapshot, to make things easier for myself I chose to connect to the VM through ssh:
+
+```shell
+ssh your_vm_user@your_vm_ip
+```
+— Opens up an SSH session to your VM
+
 ## Step 2: *Installing Docker*
 
 ### A. Fix the CD-ROM Source and Add Docker's GPG Key
