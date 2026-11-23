@@ -155,7 +155,7 @@ Once the VM booted back up, the website came back up, and I added my first monit
 ## Step 4: *Securing the VM* 
 ### A. Set Up SSH Key Authentication and Disable Password Logins
 
-To ensure I wouldn't get locked out after disabling passwords, I first generated an SSH key pair on my local machine , copied the public key to the VM's `~/.ssh/authorized_keys` file, and verified that key-based login worked in a second terminal window.
+To ensure I wouldn't get locked out after disabling passwords, I first generated an SSH key pair on my local git bash , copied the public key to the VM's `~/.ssh/authorized_keys` file, and verified that key-based login worked in a second terminal window.
 
 ```shell
 ssh-keygen -t ed25519
