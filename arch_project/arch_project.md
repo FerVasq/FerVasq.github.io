@@ -1,7 +1,4 @@
----
-title: Arch Linux Installation and Setup Documentation
----
-
+# Arch Linux Installation and Setup Documentation
 
 ## Step 1: *Download the ISO using the provided link*
 
