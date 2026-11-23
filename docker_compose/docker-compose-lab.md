@@ -155,8 +155,11 @@ Once the VM booted back up, the website came back up, and I added my first monit
 ## Step 4: *Securing the VM* 
 ### A. Set Up SSH Key Authentication and Disable Password Logins
 
-To ensure I wouldn't get locked out after disabling passwords, I first generated an SSH key pair on my local git bash , copied the public key to the VM's `~/.ssh/authorized_keys` file, and verified that key-based login worked in a second terminal window.
+To ensure I wouldn't get locked out after disabling passwords, I first generated an SSH key pair on my local git bash and windows terminal , copied the public key to the VM's `~/.ssh/authorized_keys` file, and verified that key-based login worked in a second terminal window.
 
+`ssh-copy-id` is included with Git for Windows but not with Windows' built-in OpenSSH, so I ran the key setup in **Git Bash**. The rest of the commands I ran in the **Windows Command Prompt**.
+
+In Git Bash:
 ```shell
 ssh-keygen -t ed25519
 ```
@@ -167,6 +170,7 @@ ssh-copy-id your-user-id@your-vm's-ip
 ```
 — Copies the client's public SSH key into ~/.ssh/authorized_keys on the VM with the proper permissions
 
+In the Windows Command Prompt:
 ```shell
 ssh your-user-id@your-vm's-ip
 ```
@@ -186,11 +190,35 @@ sudo nano /etc/ssh/sshd_config
 ```shell
 sudo systemctl reload ssh
 ```
-
-— Reloads the SSH daemon to apply key-only authentication without dropping active connections
+— Reloads SSH
 
 ### B. Test with the public-key authentication disabled:
 
+```shell
+ssh -o PubkeyAuthentication=no your-user-id@your-vm's-ip
+```
+— Attempts an SSH login without keys to verify that password authentication is refused
+
+Then after checking I notied that it still didn't work, so I checked the ssh_config.d:
+
+```shell
+grep -rn "PasswordAuthentication" /etc/ssh/sshd_config.d/
+```
+— Checks if the Password Authentication is in ssh_config.d
+
+It found the PasswordAuthentication yes on the 50-cloud-init.conf file, so I nano into it to modify it:
+```shell
+sudo nano /etc/ssh/sshd_config.d/50-cloud-init.conf
+```
+— Lets you into the config file with the PasswordAuthentication yes
+
+Then reload ssh again:
+```shell
+sudo systemctl reload ssh
+```
+— Reloads SSH
+
+Lastly test with the public-key authentication disabled again:
 ```shell
 ssh -o PubkeyAuthentication=no your-user-id@your-vm's-ip
 ```
